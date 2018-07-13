@@ -1,0 +1,28 @@
+Requirements:
+
+pip install tweepy
+pip install searchtweets
+pip install pyyaml
+
+To baseline the archive:
+
+Create searchtweets.yml with the form:
+
+search_tweets_api:
+  account_type: premium
+  endpoint: https://api.twitter.com/1.1/tweets/search/30day/test.json
+  consumer_key:KEY
+  consumer_secret: SECRET
+
+On the CL:
+
+search_tweets.py --results-per-call 100 --filter-rule "#FFSTechConf"--credential-file ./searchtweets.yml --no-print-stream --filename-prefix ffs_tweets
+python archive.py
+
+To incrementally update the archive:
+
+python update_archive.py
+
+To process the archive and produce the CSVs:
+
+python process_archive.py
